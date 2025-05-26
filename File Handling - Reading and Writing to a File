@@ -1,0 +1,26 @@
+import java.io.*;
+import java.nio.file.*;
+
+public class FileProcessor {
+    public static void main(String[] args) {
+        Path inputFile = Paths.get("input.txt");
+        Path outputFile = Paths.get("output.txt");
+
+        try {
+            // Read all lines from the input file
+            List<String> lines = Files.readAllLines(inputFile);
+
+            // Process each line (convert to uppercase)
+            List<String> processedLines = lines.stream()
+                                               .map(String::toUpperCase)
+                                               .collect(Collectors.toList());
+
+            // Write the processed lines to the output file
+            Files.write(outputFile, processedLines);
+
+            System.out.println("File processing completed successfully.");
+        } catch (IOException e) {
+            System.err.println("An error occurred during file processing: " + e.getMessage());
+        }
+    }
+}
