@@ -1,0 +1,17 @@
+public class FactorialCalculator {
+
+    // Recursive method to calculate factorial
+    public static long factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1; // Base case
+        } else {
+            return n * factorial(n - 1); // Recursive case
+        }
+    }
+
+    public static void main(String[] args) {
+        int number = 5; // Change this value to compute factorial of other numbers
+        long result = factorial(number);
+        System.out.println("The factorial of " + number + " is " + result);
+    }
+}
