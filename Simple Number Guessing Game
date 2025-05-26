@@ -1,0 +1,49 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessTheNumberGame {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner scanner = new Scanner(System.in);
+
+        int numberToGuess = rand.nextInt(100) + 1; // Random number between 1 and 100
+        int maxAttempts = 5;
+        int attempts = 0;
+        boolean guessedCorrectly = false;
+
+        System.out.println("Welcome to the Number Guessing Game!");
+        System.out.println("I'm thinking of a number between 1 and 100.");
+        System.out.println("You have " + maxAttempts + " attempts to guess it.");
+
+        while (attempts < maxAttempts) {
+            System.out.print("Enter your guess: ");
+
+            try {
+                int guess = Integer.parseInt(scanner.nextLine());
+                attempts++;
+
+                if (guess < 1 || guess > 100) {
+                    System.out.println("Please enter a number between 1 and 100.");
+                } else if (guess < numberToGuess) {
+                    System.out.println("Too low!");
+                } else if (guess > numberToGuess) {
+                    System.out.println("Too high!");
+                } else {
+                    System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+                    guessedCorrectly = true;
+                    break;
+                }
+
+                System.out.println("Attempts remaining: " + (maxAttempts - attempts));
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number.");
+            }
+        }
+
+        if (!guessedCorrectly) {
+            System.out.println("Sorry! You've used all your attempts. The number was: " + numberToGuess);
+        }
+
+        scanner.close();
+    }
+}
